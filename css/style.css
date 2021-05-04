@@ -30,7 +30,9 @@ tbody tr:nth-of-type(odd) { background-color: rgba(0, 0, 0, 0.03); }
 
 .search_results { padding-top: 20px; padding-bottom: 20px; }
 
-.container { padding: 20px; position: absolute; top: 50%; transform: translate(-50%, -50%); left: 50%; background-color: rgba(0, 0, 0, 0.05); }
+@media screen and (min-width: 768px) { .container { margin-top: 25px; } }
+
+.container { padding: 20px; background-color: rgba(0, 0, 0, 0.05); }
 
 .row_wrap { background-color: #ffffff; padding: 30px; }
 
