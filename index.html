@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+        <title>Filter airports</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row_wrap">
+                <h1 class="page_title">Filter <span style="color:#d4d4d4;">airports</span></h1>
+                
+                <div class="row search_bar">
+                    <div class="left_cont col-xl-7 col-lg-8">
+                        <h4>Type</h4>
+                        <ul class="filters d-flex flex-row flex-wrap">
+                            <li>
+                                <label class="d-inline-flex align-items-center">
+                                    <input type="checkbox" name="type" value="small"/> <span>Small</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="d-inline-flex align-items-center">
+                                    <input type="checkbox" name="type" value="medium"/> <span>Medium</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="d-inline-flex align-items-center">
+                                    <input type="checkbox" name="type" value="large"/> <span>Large</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="d-inline-flex align-items-center">
+                                    <input type="checkbox" name="type" value="heliport"/> <span>Heliport</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="d-inline-flex align-items-center">
+                                    <input type="checkbox" name="type" value="closed"/> <span>Closed</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="d-inline-flex align-items-center">
+                                    <input type="checkbox" name="type" value="inyourfavorite"/> <span>In your favorite</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right_cont col-xl-5 col-lg-4">
+                        <h4>Filter by search</h4>
+                        <input type="text" name="search" />
+                    </div>
+                </div>
+
+                <div class="search_results table-responsive">
+                    <table class="table">
+                        <thead class="table-active">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">ICAO</th>
+                                <th scope="col">IATA</th>
+                                <th scope="col">Elev.</th>
+                                <th scope="col">Lat.</th>
+                                <th scope="col">Long.</th>
+                                <th scope="col">Type.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="search_results_cont">
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="filter-pagination">
+                    <div class="navigate_arrows d-flex align-items-center justify-content-between"></div>
+                    <div class="show_results">Showing <strong id="current_results"></strong> of <strong id="total_results"></strong> results</div>
+                </div>
+            </div>
+        </div>
+        
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.4/jquery.simplePagination.min.js" integrity="sha512-J4OD+6Nca5l8HwpKlxiZZ5iF79e9sgRGSf0GxLsL1W55HHdg48AEiKCXqvQCNtA1NOMOVrw15DXnVuPpBm2mPg==" crossorigin="anonymous"></script>
+        <script src="js/airport_data.js"></script> 
+        <script src="js/main.js"></script> 
+    </body>
+</html>
