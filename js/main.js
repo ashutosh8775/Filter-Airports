@@ -113,6 +113,7 @@ if (data && typeof data == 'object') {
                 $checkboxSelector[i].onclick = function() {
                     sortDataBasedOnType();
                     document.querySelector('input[name="search"]').value = '';
+                    $searchedData = [];
                 };
             }
         }
