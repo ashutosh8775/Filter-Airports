@@ -6,36 +6,45 @@ if (data && typeof data == 'object') {
         var $searchedData = [];
         var $paginate = true;
 
+        /* function to create search results html*/
         const getAirportData = function(obj){
             let html = '';
             let $offsetVal = obj && obj.offset ? obj.offset : 0;
             let $totalDataLength = Object.keys(obj.data).length;
             let $lastItem = $offsetVal + ($totalDataLength < $iLimit ? $totalDataLength : $iLimit);
-            
-            for (const [i,v] of Object.entries(obj.data.slice($offsetVal, $lastItem))) {
-                html +=`<tr>
-                            <th scope="row">${v.name || '-'}</th>
-                            <td>${v.icao || '-'}</td>
-                            <td>${v.iata || '-'}</td>
-                            <td>${v.elevation || '-'}</td>
-                            <td>${v.latitude || '-'}</td>
-                            <td>${v.longitude || '-'}</td>
-                            <td>${v.type || '-'}</td>
-                        </tr>`; 
+            console.log('obj.data',obj.data);
+            if(obj.data && obj.data.length > 0){
+                for (const [i,v] of Object.entries(obj.data.slice($offsetVal, $lastItem))) {
+                    html +=`<tr>
+                                <th scope="row">${v.name || '-'}</th>
+                                <td>${v.icao || '-'}</td>
+                                <td>${v.iata || '-'}</td>
+                                <td>${v.elevation || '-'}</td>
+                                <td>${v.latitude || '-'}</td>
+                                <td>${v.longitude || '-'}</td>
+                                <td>${v.type || '-'}</td>
+                            </tr>`; 
+                }
+                document.getElementById('current_results').textContent = ($offsetVal + 1) + '-' + $lastItem;
+                document.getElementById('total_results').textContent = $totalDataLength;
+                $('.filter-pagination').removeClass('invisible');
+            } else {
+                html +=`<div class="no_results">No data found.</div>`;
+                $('.filter-pagination').addClass('invisible');
             }
             
             document.getElementById('search_results_cont').innerHTML = html;
-            document.getElementById('current_results').textContent = ($offsetVal + 1) + '-' + $lastItem;
-            document.getElementById('total_results').textContent = $totalDataLength;
+            
 
             if($paginate){
                 paginate({'total':$totalDataLength});
             }
         };
 
-        // on loadd
+        /* called at time of page load*/
         getAirportData({'data':data});
-    
+        
+        /* function to generate pagination */
         function paginate(obj){
             if(obj.total <= $iLimit ){
                 $('.navigate_arrows').addClass('invisible');
@@ -98,15 +107,17 @@ if (data && typeof data == 'object') {
         }
 
         
-        //on selecting type filters
+        /*on selecting type filters*/
         for (var i in $checkboxSelector) {
             if($checkboxSelector[i].value){
                 $checkboxSelector[i].onclick = function() {
                     sortDataBasedOnType();
+                    document.querySelector('input[name="search"]').value = '';
                 };
             }
         }
         
+        /* when user searches data through input*/
         const $searchInputSelector = document.querySelector('input[name="search"]');
         $searchInputSelector.addEventListener("keyup", function (e) {
             if (e.keyCode >= 37 && e.keyCode <= 40) {
